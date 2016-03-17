@@ -1,0 +1,59 @@
+{
+  "name": "html-tag-names",
+  "version": "0.0.0",
+  "description": "List of known HTML tag-names",
+  "license": "MIT",
+  "keywords": [
+    "html",
+    "tag",
+    "name",
+    "element",
+    "tagname",
+    "w3c",
+    "whatwg"
+  ],
+  "dependencies": {},
+  "files": [
+    "index.js",
+    "index.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/html-tag-names.git"
+  },
+  "bugs": "https://github.com/wooorm/html-tag-names/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "devDependencies": {
+    "bail": "^1.0.0",
+    "browserify": "^13.0.0",
+    "cheerio": "^0.20.0",
+    "eslint": "^2.0.0",
+    "esmangle": "^1.0.1",
+    "istanbul": "^0.4.0",
+    "jscs": "^2.0.0",
+    "jscs-jsdoc": "^1.0.0",
+    "remark": "^4.0.0",
+    "remark-comment-config": "^3.0.0",
+    "remark-github": "^4.0.1",
+    "remark-lint": "^3.0.0",
+    "remark-usage": "^3.0.0",
+    "remark-validate-links": "^3.0.0",
+    "tape": "^4.4.0"
+  },
+  "scripts": {
+    "build-md": "remark . --quiet --frail",
+    "build-crawl": "node script/build.js",
+    "build-bundle": "browserify index.js --bare -s htmlTagNames > html-tag-names.js",
+    "build-mangle": "esmangle html-tag-names.js > html-tag-names.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint-api": "eslint .",
+    "lint-style": "jscs --reporter inline .",
+    "lint": "npm run lint-api && npm run lint-style",
+    "test-api": "node test.js",
+    "test-coverage": "istanbul cover test.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  }
+}
