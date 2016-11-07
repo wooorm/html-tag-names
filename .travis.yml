@@ -2,7 +2,6 @@ language: node_js
 node_js:
 - '4.0'
 - '7.0'
-after_script: npm install codecov.io && cat ./coverage/lcov.info | codecov
 deploy:
   - provider: npm
     email: tituswormer@gmail.com
