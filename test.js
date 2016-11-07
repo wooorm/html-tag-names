@@ -2,7 +2,7 @@
 
 /* Dependencies. */
 var test = require('tape');
-var htmlTagNames = require('./index.js');
+var htmlTagNames = require('./');
 
 /* Tests. */
 test('htmlTagNames', function (t) {

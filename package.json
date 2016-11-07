@@ -12,20 +12,17 @@
     "w3c",
     "whatwg"
   ],
-  "dependencies": {},
-  "files": [
-    "index.js",
-    "index.json"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/html-tag-names.git"
-  },
+  "repository": "https://github.com/wooorm/html-tag-names",
   "bugs": "https://github.com/wooorm/html-tag-names/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
+  "main": "index.js",
+  "files": [
+    "index.json"
+  ],
+  "dependencies": {},
   "devDependencies": {
     "bail": "^1.0.0",
     "browserify": "^13.0.0",
@@ -43,11 +40,11 @@
   "scripts": {
     "build-md": "remark . --quiet --frail",
     "build-crawl": "node script/build.js",
-    "build-bundle": "browserify index.js --bare -s htmlTagNames > html-tag-names.js",
+    "build-bundle": "browserify index.json --bare -s htmlTagNames > html-tag-names.js",
     "build-mangle": "esmangle html-tag-names.js > html-tag-names.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
-    "test-api": "node test.js",
+    "test-api": "node test",
     "test": "npm run build && npm run lint && npm run test-api"
   },
   "xo": {
