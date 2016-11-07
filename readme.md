@@ -15,20 +15,13 @@ introduced tag-names.
 npm install html-tag-names
 ```
 
-**html-tag-names** is also available as an AMD, CommonJS, and globals
-module, [uncompressed and compressed][releases].
-
 ## Usage
-
-Dependencies:
 
 ```javascript
 var htmlTagNames = require('html-tag-names');
-```
 
-Slicing the first 20:
+htmlTagNames.length; //=> 147
 
-```javascript
 var first = htmlTagNames.slice(0, 20);
 ```
 
@@ -57,18 +50,6 @@ Yields:
   'br' ]
 ```
 
-And `length`:
-
-```javascript
-var length = htmlTagNames.length;
-```
-
-Yields:
-
-```js
-147
-```
-
 ## API
 
 ### `htmlTagNames`
@@ -86,8 +67,6 @@ Yields:
 [build-page]: https://travis-ci.org/wooorm/html-tag-names
 
 [npm]: https://docs.npmjs.com/cli/install
-
-[releases]: https://github.com/wooorm/html-tag-names/releases
 
 [license]: LICENSE
 
