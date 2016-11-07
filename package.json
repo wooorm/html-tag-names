@@ -35,7 +35,7 @@
   },
   "scripts": {
     "build-md": "remark . --quiet --frail --output",
-    "build-crawl": "node script/build.js",
+    "build-crawl": "node build",
     "build-bundle": "browserify index.json --bare -s htmlTagNames > html-tag-names.js",
     "build-mangle": "esmangle html-tag-names.js > html-tag-names.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",

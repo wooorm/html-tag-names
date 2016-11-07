@@ -2,12 +2,11 @@
 
 /* Dependencies. */
 var fs = require('fs');
-var path = require('path');
 var http = require('http');
 var https = require('https');
 var cheerio = require('cheerio');
 var bail = require('bail');
-var list = require('..');
+var list = require('./');
 
 /* Constants. */
 var HTTPS = 'https://';
@@ -16,7 +15,7 @@ var PREFIX = 'elements-3:';
 /* Input / output locations. */
 var w3c = 'http://w3c.github.io/elements-of-html/';
 var whatwg = 'https://html.spec.whatwg.org/multipage/indices.html#elements-3';
-var output = path.join(__dirname, '..', 'index.json');
+var output = 'index.json';
 
 var count = 0;
 
