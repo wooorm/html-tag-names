@@ -18,7 +18,7 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
-  "main": "index.js",
+  "main": "index.json",
   "files": [
     "index.json"
   ],
