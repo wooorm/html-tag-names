@@ -22,7 +22,7 @@ var htmlTagNames = require('html-tag-names');
 
 htmlTagNames.length; //=> 147
 
-var first = htmlTagNames.slice(0, 20);
+console.log(htmlTagNames.slice(0, 20));;
 ```
 
 Yields:
@@ -55,6 +55,19 @@ Yields:
 ### `htmlTagNames`
 
 `Array.<string>` — List of lower-case tag-names.
+
+## Related
+
+*   [`mathml-tag-names`](https://github.com/wooorm/mathml-tag-names)
+    — List of MathML tags
+*   [`svg-tag-names`](https://github.com/wooorm/svg-tag-names)
+    — List of SVG tags
+*   [`svg-element-attributes`](https://github.com/wooorm/svg-element-attributes)
+    — Map of SVG elements to allowed attributes
+*   [`html-element-attributes`](https://github.com/wooorm/html-element-attributes)
+    — Map of HTML elements to allowed attributes
+*   [`aria-attributes`](https://github.com/wooorm/aria-attributes)
+    — List of ARIA attributes
 
 ## License
 
