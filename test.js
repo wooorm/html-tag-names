@@ -1,10 +1,8 @@
 'use strict';
 
-/* Dependencies. */
 var test = require('tape');
 var htmlTagNames = require('./');
 
-/* Tests. */
 test('htmlTagNames', function (t) {
   t.ok(
     Array.isArray(htmlTagNames),

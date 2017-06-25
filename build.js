@@ -1,6 +1,5 @@
 'use strict';
 
-/* Dependencies. */
 var fs = require('fs');
 var jsdom = require('jsdom');
 var bail = require('bail');
@@ -8,7 +7,6 @@ var list = require('./');
 
 var count = 0;
 
-/* Write. */
 function done() {
   count++;
 
