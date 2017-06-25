@@ -1,8 +1,13 @@
 'use strict';
 
 var fs = require('fs');
-var jsdom = require('jsdom');
+var https = require('https');
+var concat = require('concat-stream');
 var bail = require('bail');
+var unified = require('unified');
+var html = require('rehype-parse');
+var selectAll = require('hast-util-select').selectAll;
+var toString = require('hast-util-to-string');
 var list = require('./');
 
 var count = 0;
@@ -16,39 +21,40 @@ function done() {
 }
 
 /* Crawl W3C. */
-jsdom.env('http://w3c.github.io/elements-of-html/', function (err, window) {
-  bail(err);
+https.get('https://w3c.github.io/elements-of-html/', function (res) {
+  res.pipe(concat(onconcat)).on('error', bail);
 
-  var rows = [].slice.call(window.document.querySelectorAll('[scope="row"] code'));
+  function onconcat(buf) {
+    selectAll('[scope="row"] code', unified().use(html).parse(buf)).forEach(each);
 
-  rows.forEach(function (row) {
-    var data = row.textContent;
+    done();
 
-    if (data && !/\s/.test(data) && list.indexOf(data) === -1) {
-      list.push(data);
+    function each(node) {
+      var data = toString(node);
+
+      if (data && !/\s/.test(data) && list.indexOf(data) === -1) {
+        list.push(data);
+      }
     }
-  });
-
-  done();
+  }
 });
 
 /* Crawl WHATWG. */
-jsdom.env('https://html.spec.whatwg.org/multipage/indices.html#elements-3', function (err, window) {
-  bail(err);
+https.get('https://html.spec.whatwg.org/multipage/indices.html', function (res) {
+  res.pipe(concat(onconcat)).on('error', bail);
 
-  var rows = [].slice.call(window.document.querySelectorAll('tbody th code'));
+  function onconcat(buf) {
+    selectAll('tbody th code', unified().use(html).parse(buf)).forEach(each);
 
-  rows.forEach(function (row) {
-    var data = row.children && row.children[0] && row.children[0].textContent;
+    done();
 
-    if (
-      row.id &&
-      row.id.slice(0, 'elements-3:'.length) === 'elements-3:' &&
-      list.indexOf(data) === -1
-    ) {
-      list.push(data);
+    function each(node) {
+      var id = node.properties.id;
+      var data = toString(node);
+
+      if (id && id.slice(0, 'elements-3:'.length) === 'elements-3:' && list.indexOf(data) === -1) {
+        list.push(data);
+      }
     }
-  });
-
-  done();
+  }
 });
