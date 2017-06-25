@@ -12,7 +12,7 @@
     "w3c",
     "whatwg"
   ],
-  "repository": "https://github.com/wooorm/html-tag-names",
+  "repository": "wooorm/html-tag-names",
   "bugs": "https://github.com/wooorm/html-tag-names/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
@@ -52,6 +52,8 @@
     ]
   },
   "remarkConfig": {
-    "plugins": ["preset-wooorm"]
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
