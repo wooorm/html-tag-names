@@ -22,7 +22,7 @@ var htmlTagNames = require('html-tag-names');
 
 htmlTagNames.length; //=> 147
 
-console.log(htmlTagNames.slice(0, 20));;
+console.log(htmlTagNames.slice(0, 20));
 ```
 
 Yields:
