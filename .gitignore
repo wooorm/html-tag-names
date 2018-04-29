@@ -3,3 +3,4 @@
 node_modules/
 html-tag-names.js
 html-tag-names.min.js
+yarn.lock
