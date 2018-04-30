@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var htmlTagNames = require('./');
+var htmlTagNames = require('.');
 
 test('htmlTagNames', function (t) {
   t.ok(
