@@ -18,11 +18,11 @@ npm install html-tag-names
 ## Usage
 
 ```javascript
-var htmlTagNames = require('html-tag-names');
+var htmlTagNames = require('html-tag-names')
 
-htmlTagNames.length; //=> 147
+console.log(htmlTagNames.length) // => 148
 
-console.log(htmlTagNames.slice(0, 20));
+console.log(htmlTagNames.slice(0, 20))
 ```
 
 Yields:
