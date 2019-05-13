@@ -1,14 +1,14 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/dubnium
+  - node
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: pYF0K9AvIYUc0QtgcBgjz1kaZflXN4ZUfmQqlmjopM0+OSlMNecq5M3aZbRgwi4NuyCAt9BDqJ6k1m+q4t/4UlAfGWlNAHeNbGa10Qwy51b5rO7Yt3OJzxWvZ3pa0EiNoRdO+RqOVUxZa5db1UpWU9lG42VW+Z9AW8lWae6IAk73u6bLN6GQqH/TAGYzonM3BDea0iqvzR4TVzo0XvsAPDLddSa7fOgkYpgnVZANBLYD+ijT20xAPz71nOnOUFjt3EEZXIl+ZE9uhWtYCjSm9VNaRKz0unCt4HJZWJ+pkUX6tqWsb9ZM47baHtuUZZIRjpaD7Ef9/v3H3RKS/Ctzdc2N8IW9TsqPrkheB4xC7AalTFmvjHxcMp0prKnfXyy2F70+J5FeUztgfnBxx3+a1wgkn7/NmqUUVaz6b9nqSMSh65Kw1bqLYy5d8/F62XtWusKzhgr9w3fci62ErCeFFfJmlPvRLVU8HDDMk8j+t47C2fYhs02XyyWNpzUyvvI1c65U/nN7QdMIn+PsPTJz2GAUeCeSRyE1iyxtPC7xtu/UzToRqu9m9hxIKGrLXlJO+IcMskmkQbevyFUpgH2a3yovQPYo7SJh3ApTSgt5N8KrJIcIGNItSMhizJ6O0iyo5zNZZ6CVJvyOf3Ld/ejtBKkmpDVnvX7dnot88c8qR8o=
+    secure: G/SMQH20mqAO/1e5Tl0qAMLX1PF6P5qyAzOk2SBAMpOWiLNqOMhykq5r6fiDv3WiZpKyQ3pVOm80iEgFi370xYmxPI8/cdLcWtExzdLe1aZyRFvnVvnnwe02L6aBufV1pAJhpvplZ1oam5oiC2NiiTD5aIGYpl95JPuB2d91tgcLrjg1f6NF2rH3mp4eOKLghyndfZFkD3YLKlUSczvjcJYZDpfaKjz/nOn0Eyr9EHP0j2DaO+P72adhsgvhPUZhJ4L9n/CuG6V1Krr31ApaNnKhZVkrhbp2znKcVEQXxpD6DjzjkZXZM2Us6G2NM9QUBQSv3LjZ0A/kSkccbjM8zcZHvqqXlRj5KXtUksdOIHSkZeOXsuTeBFw9+nzUiedqakCYw/WPlTUawI0UwRqtPX0BcWp0ZE2e85aB5xOBU7hgH+YGb1kwMRXkd7gfmlWj2QrUtD+nVaLLaZe7GUzr544/kQCIFmRRmBCzL4suoGlrCz+I+2CxUaVmSMRCa6rNO//T5sjwg0D5gxDx73Nm8x8ud+KQHSpkNqgEP8sYY06vJGGRiieefBhtzBjOzofyCi2oOBp7xUP0wuj1vBE9tNPuQL5vtAjHcppaHLHq2sIL/I7KavTzWyvnP/3rkr26azLfU4ShShGbW+UR5DPuELf0BQI6YHtFG57JpnLI4RQ=
   file:
-    - "html-tag-names.js"
-    - "html-tag-names.min.js"
+    - 'html-tag-names.js'
+    - 'html-tag-names.min.js'
   on:
     tags: true
