@@ -1,4 +1,8 @@
-# html-tag-names [![Build Status][build-badge]][build-page]
+# html-tag-names
+
+[![Build][build-badge]][build]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
 
 List of known HTML tag-names.  Includes ancient (for example,
 `nextid` and `basefont`) and modern (for example, `shadow` and
@@ -77,7 +81,15 @@ Yields:
 
 [build-badge]: https://img.shields.io/travis/wooorm/html-tag-names.svg
 
-[build-page]: https://travis-ci.org/wooorm/html-tag-names
+[build]: https://travis-ci.org/wooorm/html-tag-names
+
+[downloads-badge]: https://img.shields.io/npm/dm/html-tag-names.svg
+
+[downloads]: https://www.npmjs.com/package/html-tag-names
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/html-tag-names.svg
+
+[size]: https://bundlephobia.com/result?p=html-tag-names
 
 [npm]: https://docs.npmjs.com/cli/install
 
