@@ -41,7 +41,7 @@
   },
   "scripts": {
     "generate": "node build",
-    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-bundle": "browserify index.json --bare -s htmlTagNames > html-tag-names.js",
     "build-mangle": "esmangle html-tag-names.js > html-tag-names.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
