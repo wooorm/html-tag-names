@@ -14,9 +14,9 @@
   ],
   "repository": "wooorm/html-tag-names",
   "bugs": "https://github.com/wooorm/html-tag-names/issues",
-  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
     "Valerio Coltrè <mister.gamer@gmail.com>"
   ],
   "main": "index.json",
