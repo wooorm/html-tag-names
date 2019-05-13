@@ -28,7 +28,6 @@
     "bail": "^1.0.0",
     "browserify": "^16.0.0",
     "concat-stream": "^2.0.0",
-    "esmangle": "^1.0.1",
     "hast-util-select": "^3.0.0",
     "hast-util-to-string": "^1.0.0",
     "prettier": "^1.12.1",
@@ -36,14 +35,15 @@
     "remark-cli": "^6.0.0",
     "remark-preset-wooorm": "^4.0.0",
     "tape": "^4.4.0",
+    "tinyify": "^2.5.0",
     "unified": "^7.0.0",
     "xo": "^0.24.0"
   },
   "scripts": {
     "generate": "node build",
     "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
-    "build-bundle": "browserify index.json --bare -s htmlTagNames > html-tag-names.js",
-    "build-mangle": "esmangle html-tag-names.js > html-tag-names.min.js",
+    "build-bundle": "browserify index.json -s htmlTagNames -o html-tag-names.js",
+    "build-mangle": "browserify index.json -s htmlTagNames -p tinyify -o html-tag-names.js",
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test": "npm run format && npm run build && npm run test-api"
