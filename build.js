@@ -14,10 +14,10 @@ var proc = unified().use(html)
 
 var count = 0
 
-/* Crawl W3C. */
+// Crawl W3C.
 https.get('https://w3c.github.io/elements-of-html/', onw3c)
 
-/* Crawl WHATWG. */
+// Crawl WHATWG.
 https.get('https://html.spec.whatwg.org/multipage/indices.html', onwhatwg)
 
 function onw3c(res) {
