@@ -43,7 +43,7 @@
     "generate": "node build",
     "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-bundle": "browserify index.json -s htmlTagNames -o html-tag-names.js",
-    "build-mangle": "browserify index.json -s htmlTagNames -p tinyify -o html-tag-names.js",
+    "build-mangle": "browserify index.json -s htmlTagNames -p tinyify -o html-tag-names.min.js",
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test": "npm run format && npm run build && npm run test-api"
