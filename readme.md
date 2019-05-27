@@ -4,24 +4,24 @@
 [![Downloads][downloads-badge]][downloads]
 [![Size][size-badge]][size]
 
-List of known HTML tag-names.  Includes ancient (for example,
-`nextid` and `basefont`) and modern (for example, `shadow` and
-`template`) tag-names from both W3C and WHATWG.
+List of known HTML tag-names.
+Includes ancient (for example, `nextid` and `basefont`) and modern (for example,
+`shadow` and `template`) tag-names from both W3C and WHATWG.
 
 The repo includes a script to crawl W3C and WHATWG to include newly
 introduced tag-names.
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install html-tag-names
 ```
 
 ## Usage
 
-```javascript
+```js
 var htmlTagNames = require('html-tag-names')
 
 console.log(htmlTagNames.length) // => 148
@@ -58,7 +58,7 @@ Yields:
 
 ### `htmlTagNames`
 
-`Array.<string>` — List of lower-case tag-names.
+`Array.<string>` — List of lowercase tag names.
 
 ## Related
 
