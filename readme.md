@@ -67,7 +67,7 @@ Yields:
 *   [`svg-tag-names`](https://github.com/wooorm/svg-tag-names)
     — List of SVG tags
 *   [`react-tag-names`](https://github.com/jgierer12/react-tag-names)
-    — List of React's HTML and SVG tag names
+    — List of React’s HTML and SVG tag names
 *   [`svg-element-attributes`](https://github.com/wooorm/svg-element-attributes)
     — Map of SVG elements to allowed attributes
 *   [`html-element-attributes`](https://github.com/wooorm/html-element-attributes)
