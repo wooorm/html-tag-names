@@ -32,7 +32,7 @@ function onw3c(res) {
   function each(node) {
     var data = toString(node)
 
-    if (data && !/\s/.test(data) && list.indexOf(data) === -1) {
+    if (data && !/\s/.test(data) && !list.includes(data)) {
       list.push(data)
     }
   }
@@ -54,7 +54,7 @@ function onwhatwg(res) {
     if (
       id &&
       id.slice(0, 'elements-3:'.length) === 'elements-3:' &&
-      list.indexOf(data) === -1
+      !list.includes(data)
     ) {
       list.push(data)
     }
