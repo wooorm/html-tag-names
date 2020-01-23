@@ -14,6 +14,10 @@
   ],
   "repository": "wooorm/html-tag-names",
   "bugs": "https://github.com/wooorm/html-tag-names/issues",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wooorm"
+  },
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
