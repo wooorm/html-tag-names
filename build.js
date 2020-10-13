@@ -20,8 +20,8 @@ https.get('https://w3c.github.io/elements-of-html/', onw3c)
 // Crawl WHATWG.
 https.get('https://html.spec.whatwg.org/multipage/indices.html', onwhatwg)
 
-function onw3c(res) {
-  res.pipe(concat(onconcat)).on('error', bail)
+function onw3c(response) {
+  response.pipe(concat(onconcat)).on('error', bail)
 
   function onconcat(buf) {
     selectAll('[scope="row"] code', proc.parse(buf)).forEach(each)
@@ -38,8 +38,8 @@ function onw3c(res) {
   }
 }
 
-function onwhatwg(res) {
-  res.pipe(concat(onconcat)).on('error', bail)
+function onwhatwg(response) {
+  response.pipe(concat(onconcat)).on('error', bail)
 
   function onconcat(buf) {
     selectAll('tbody th code', proc.parse(buf)).forEach(each)

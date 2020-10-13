@@ -1,2 +1,6 @@
+.nyc_output/
+coverage/
+*.md
+*.json
 html-tag-names.js
 html-tag-names.min.js
