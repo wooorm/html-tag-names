@@ -1,14 +1,12 @@
-'use strict'
-
-var fs = require('fs')
-var https = require('https')
-var concat = require('concat-stream')
-var bail = require('bail')
-var unified = require('unified')
-var html = require('rehype-parse')
-var selectAll = require('hast-util-select').selectAll
-var toString = require('hast-util-to-string')
-var list = require('.')
+import fs from 'fs'
+import https from 'https'
+import concat from 'concat-stream'
+import bail from 'bail'
+import unified from 'unified'
+import html from 'rehype-parse'
+import select from 'hast-util-select'
+import toString from 'hast-util-to-string'
+import {htmlTagNames} from './index.js'
 
 var proc = unified().use(html)
 
@@ -24,15 +22,15 @@ function onw3c(response) {
   response.pipe(concat(onconcat)).on('error', bail)
 
   function onconcat(buf) {
-    var nodes = selectAll('[scope="row"] code', proc.parse(buf))
+    var nodes = select.selectAll('[scope="row"] code', proc.parse(buf))
     var index = -1
     var data
 
     while (++index < nodes.length) {
       data = toString(nodes[index])
 
-      if (data && !/\s/.test(data) && !list.includes(data)) {
-        list.push(data)
+      if (data && !/\s/.test(data) && !htmlTagNames.includes(data)) {
+        htmlTagNames.push(data)
       }
     }
 
@@ -44,7 +42,7 @@ function onwhatwg(response) {
   response.pipe(concat(onconcat)).on('error', bail)
 
   function onconcat(buf) {
-    var nodes = selectAll('tbody th code', proc.parse(buf))
+    var nodes = select.selectAll('tbody th code', proc.parse(buf))
     var index = -1
     var id
     var data
@@ -56,9 +54,9 @@ function onwhatwg(response) {
       if (
         id &&
         id.slice(0, 'elements-3:'.length) === 'elements-3:' &&
-        !list.includes(data)
+        !htmlTagNames.includes(data)
       ) {
-        list.push(data)
+        htmlTagNames.push(data)
       }
     }
 
@@ -70,6 +68,12 @@ function done() {
   count++
 
   if (count === 2) {
-    fs.writeFile('index.json', JSON.stringify(list.sort(), 0, 2) + '\n', bail)
+    fs.writeFile(
+      'index.js',
+      'export var htmlTagNames = ' +
+        JSON.stringify(htmlTagNames.sort(), null, 2) +
+        '\n',
+      bail
+    )
   }
 }

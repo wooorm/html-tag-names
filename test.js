@@ -1,7 +1,5 @@
-'use strict'
-
-var test = require('tape')
-var htmlTagNames = require('.')
+import test from 'tape'
+import {htmlTagNames} from './index.js'
 
 test('htmlTagNames', function (t) {
   var index = -1

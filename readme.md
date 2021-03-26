@@ -1,6 +1,7 @@
 # html-tag-names
 
 [![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
 [![Size][size-badge]][size]
 
@@ -12,6 +13,9 @@ The repo includes a script to crawl specs to include newly introduced names.
 
 ## Install
 
+This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
+instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -21,7 +25,7 @@ npm install html-tag-names
 ## Use
 
 ```js
-var htmlTagNames = require('html-tag-names')
+import {htmlTagNames} from 'html-tag-names'
 
 console.log(htmlTagNames.length) // => 148
 
@@ -55,9 +59,12 @@ Yields:
 
 ## API
 
+This package exports the following identifiers: `htmlTagNames`.
+There is no default export.
+
 ### `htmlTagNames`
 
-`Array.<string>` — List of lowercase tag names.
+`string[]` — List of lowercase tag names.
 
 ## Related
 
@@ -83,6 +90,10 @@ Yields:
 [build-badge]: https://github.com/wooorm/html-tag-names/workflows/main/badge.svg
 
 [build]: https://github.com/wooorm/html-tag-names/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/html-tag-names.svg
+
+[coverage]: https://codecov.io/github/wooorm/html-tag-names
 
 [downloads-badge]: https://img.shields.io/npm/dm/html-tag-names.svg
 
