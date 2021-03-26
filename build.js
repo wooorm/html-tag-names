@@ -24,17 +24,19 @@ function onw3c(response) {
   response.pipe(concat(onconcat)).on('error', bail)
 
   function onconcat(buf) {
-    selectAll('[scope="row"] code', proc.parse(buf)).forEach(each)
+    var nodes = selectAll('[scope="row"] code', proc.parse(buf))
+    var index = -1
+    var data
+
+    while (++index < nodes.length) {
+      data = toString(nodes[index])
+
+      if (data && !/\s/.test(data) && !list.includes(data)) {
+        list.push(data)
+      }
+    }
 
     done()
-  }
-
-  function each(node) {
-    var data = toString(node)
-
-    if (data && !/\s/.test(data) && !list.includes(data)) {
-      list.push(data)
-    }
   }
 }
 
@@ -42,22 +44,25 @@ function onwhatwg(response) {
   response.pipe(concat(onconcat)).on('error', bail)
 
   function onconcat(buf) {
-    selectAll('tbody th code', proc.parse(buf)).forEach(each)
+    var nodes = selectAll('tbody th code', proc.parse(buf))
+    var index = -1
+    var id
+    var data
+
+    while (++index < nodes.length) {
+      id = nodes[index].properties.id
+      data = toString(nodes[index])
+
+      if (
+        id &&
+        id.slice(0, 'elements-3:'.length) === 'elements-3:' &&
+        !list.includes(data)
+      ) {
+        list.push(data)
+      }
+    }
 
     done()
-  }
-
-  function each(node) {
-    var id = node.properties.id
-    var data = toString(node)
-
-    if (
-      id &&
-      id.slice(0, 'elements-3:'.length) === 'elements-3:' &&
-      !list.includes(data)
-    ) {
-      list.push(data)
-    }
   }
 }
 
