@@ -35,7 +35,8 @@ console.log(htmlTagNames.slice(0, 20))
 Yields:
 
 ```js
-[ 'a',
+[
+  'a',
   'abbr',
   'acronym',
   'address',
@@ -54,7 +55,8 @@ Yields:
   'blink',
   'blockquote',
   'body',
-  'br' ]
+  'br'
+]
 ```
 
 ## API
