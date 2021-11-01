@@ -2,7 +2,7 @@ import test from 'tape'
 import {htmlTagNames} from './index.js'
 
 test('htmlTagNames', function (t) {
-  var index = -1
+  let index = -1
 
   t.ok(Array.isArray(htmlTagNames), 'should be an `array`')
 

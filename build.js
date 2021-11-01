@@ -1,18 +1,16 @@
-import fs from 'fs'
-import https from 'https'
-import concat from 'concat-stream'
+import fs from 'node:fs'
+import https from 'node:https'
+import concatStream from 'concat-stream'
 import {bail} from 'bail'
-import unified from 'unified'
-import html from 'rehype-parse'
-// @ts-ignore
-import select from 'hast-util-select'
-// @ts-ignore
-import toString from 'hast-util-to-string'
+import {unified} from 'unified'
+import rehypeParse from 'rehype-parse'
+import {selectAll} from 'hast-util-select'
+import {toString} from 'hast-util-to-string'
 import {htmlTagNames} from './index.js'
 
-var proc = unified().use(html)
+const proc = unified().use(rehypeParse)
 
-var count = 0
+let count = 0
 
 // Crawl W3C.
 https.get('https://w3c.github.io/elements-of-html/', onw3c)
@@ -24,19 +22,17 @@ https.get('https://html.spec.whatwg.org/multipage/indices.html', onwhatwg)
  * @param {import('http').IncomingMessage} response
  */
 function onw3c(response) {
-  response.pipe(concat(onconcat)).on('error', bail)
+  response.pipe(concatStream(onconcat)).on('error', bail)
 
   /**
    * @param {Buffer} buf
    */
   function onconcat(buf) {
-    var nodes = select.selectAll('[scope="row"] code', proc.parse(buf))
-    var index = -1
-    /** @type {string} */
-    var data
+    const nodes = selectAll('[scope="row"] code', proc.parse(buf))
+    let index = -1
 
     while (++index < nodes.length) {
-      data = toString(nodes[index])
+      const data = toString(nodes[index])
 
       if (data && !/\s/.test(data) && !htmlTagNames.includes(data)) {
         htmlTagNames.push(data)
@@ -51,22 +47,18 @@ function onw3c(response) {
  * @param {import('http').IncomingMessage} response
  */
 function onwhatwg(response) {
-  response.pipe(concat(onconcat)).on('error', bail)
+  response.pipe(concatStream(onconcat)).on('error', bail)
 
   /**
    * @param {Buffer} buf
    */
   function onconcat(buf) {
-    var nodes = select.selectAll('tbody th code', proc.parse(buf))
-    var index = -1
-    /** @type {string?} */
-    var id
-    /** @type {string} */
-    var data
+    const nodes = selectAll('tbody th code', proc.parse(buf))
+    let index = -1
 
     while (++index < nodes.length) {
-      id = nodes[index].properties.id
-      data = toString(nodes[index])
+      const id = String(nodes[index].properties.id || '')
+      const data = toString(nodes[index])
 
       if (
         id &&
@@ -87,7 +79,7 @@ function done() {
   if (count === 2) {
     fs.writeFile(
       'index.js',
-      'export var htmlTagNames = ' +
+      'export const htmlTagNames = ' +
         JSON.stringify(htmlTagNames.sort(), null, 2) +
         '\n',
       bail

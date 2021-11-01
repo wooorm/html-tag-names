@@ -1,4 +1,4 @@
-export var htmlTagNames = [
+export const htmlTagNames = [
   'a',
   'abbr',
   'acronym',
