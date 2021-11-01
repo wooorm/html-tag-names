@@ -1,3 +1,8 @@
+/**
+ * List of known HTML tag names.
+ *
+ * @type {Array<string>}
+ */
 export const htmlTagNames = [
   'a',
   'abbr',

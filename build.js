@@ -57,7 +57,8 @@ function onwhatwg(response) {
     let index = -1
 
     while (++index < nodes.length) {
-      const id = String(nodes[index].properties.id || '')
+      const node = nodes[index]
+      const id = String((node.properties || {}).id || '')
       const data = toString(nodes[index])
 
       if (
@@ -79,9 +80,16 @@ function done() {
   if (count === 2) {
     fs.writeFile(
       'index.js',
-      'export const htmlTagNames = ' +
-        JSON.stringify(htmlTagNames.sort(), null, 2) +
-        '\n',
+      [
+        '/**',
+        ' * List of known HTML tag names.',
+        ' *',
+        ' * @type {Array<string>}',
+        ' */',
+        'export const htmlTagNames = ' +
+          JSON.stringify(htmlTagNames.sort(), null, 2),
+        ''
+      ].join('\n'),
       bail
     )
   }
