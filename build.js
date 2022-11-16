@@ -1,96 +1,55 @@
-import fs from 'node:fs'
-import https from 'node:https'
-import concatStream from 'concat-stream'
-import {bail} from 'bail'
-import {unified} from 'unified'
-import rehypeParse from 'rehype-parse'
+import fs from 'node:fs/promises'
+import fetch from 'node-fetch'
+import {fromHtml} from 'hast-util-from-html'
 import {selectAll} from 'hast-util-select'
 import {toString} from 'hast-util-to-string'
 import {htmlTagNames} from './index.js'
 
-const proc = unified().use(rehypeParse)
-
-let count = 0
-
 // Crawl W3C.
-https.get('https://w3c.github.io/elements-of-html/', onw3c)
+const responseW3c = await fetch('https://w3c.github.io/elements-of-html/')
+const textW3c = await responseW3c.text()
+
+const nodesW3c = selectAll('[scope="row"] code', fromHtml(textW3c))
+let index = -1
+
+while (++index < nodesW3c.length) {
+  const data = toString(nodesW3c[index])
+
+  if (data && !/\s/.test(data)) {
+    htmlTagNames.push(data)
+  }
+}
 
 // Crawl WHATWG.
-https.get('https://html.spec.whatwg.org/multipage/indices.html', onwhatwg)
+const responseWhatwg = await fetch(
+  'https://html.spec.whatwg.org/multipage/indices.html'
+)
+const textWhatwg = await responseWhatwg.text()
 
-/**
- * @param {import('http').IncomingMessage} response
- */
-function onw3c(response) {
-  response.pipe(concatStream(onconcat)).on('error', bail)
+const nodesWhatwg = selectAll('tbody th code', fromHtml(textWhatwg))
+index = -1
 
-  /**
-   * @param {Buffer} buf
-   */
-  function onconcat(buf) {
-    const nodes = selectAll('[scope="row"] code', proc.parse(buf))
-    let index = -1
+while (++index < nodesWhatwg.length) {
+  const node = nodesWhatwg[index]
+  const id = String((node.properties || {}).id || '')
+  const data = toString(node)
 
-    while (++index < nodes.length) {
-      const data = toString(nodes[index])
-
-      if (data && !/\s/.test(data) && !htmlTagNames.includes(data)) {
-        htmlTagNames.push(data)
-      }
-    }
-
-    done()
+  if (id && id.slice(0, 'elements-3:'.length) === 'elements-3:') {
+    htmlTagNames.push(data)
   }
 }
 
-/**
- * @param {import('http').IncomingMessage} response
- */
-function onwhatwg(response) {
-  response.pipe(concatStream(onconcat)).on('error', bail)
+const list = [...new Set(htmlTagNames)].sort()
 
-  /**
-   * @param {Buffer} buf
-   */
-  function onconcat(buf) {
-    const nodes = selectAll('tbody th code', proc.parse(buf))
-    let index = -1
-
-    while (++index < nodes.length) {
-      const node = nodes[index]
-      const id = String((node.properties || {}).id || '')
-      const data = toString(nodes[index])
-
-      if (
-        id &&
-        id.slice(0, 'elements-3:'.length) === 'elements-3:' &&
-        !htmlTagNames.includes(data)
-      ) {
-        htmlTagNames.push(data)
-      }
-    }
-
-    done()
-  }
-}
-
-function done() {
-  count++
-
-  if (count === 2) {
-    fs.writeFile(
-      'index.js',
-      [
-        '/**',
-        ' * List of known HTML tag names.',
-        ' *',
-        ' * @type {Array<string>}',
-        ' */',
-        'export const htmlTagNames = ' +
-          JSON.stringify(htmlTagNames.sort(), null, 2),
-        ''
-      ].join('\n'),
-      bail
-    )
-  }
-}
+await fs.writeFile(
+  'index.js',
+  [
+    '/**',
+    ' * List of known HTML tag names.',
+    ' *',
+    ' * @type {Array<string>}',
+    ' */',
+    'export const htmlTagNames = ' + JSON.stringify(list, null, 2),
+    ''
+  ].join('\n')
+)
