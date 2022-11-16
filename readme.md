@@ -37,7 +37,7 @@ any version of HTML.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 14.14+, 16.0+), install with [npm][]:
 
 ```sh
 npm install html-tag-names
@@ -96,7 +96,7 @@ Yields:
 
 ## API
 
-This package exports the following identifiers: `htmlTagNames`.
+This package exports the identifier `htmlTagNames`.
 There is no default export.
 
 ### `htmlTagNames`
@@ -106,11 +106,12 @@ List of known (lowercase) HTML tag names (`Array<string>`).
 ## Types
 
 This package is fully typed with [TypeScript][].
+It exports no additional types.
 
 ## Compatibility
 
 This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 It also works in Deno and modern browsers.
 
 ## Security
@@ -124,7 +125,7 @@ This package is safe.
 *   [`wooorm/svg-tag-names`](https://github.com/wooorm/svg-tag-names)
     — list of SVG tag names
 *   [`jgierer12/react-tag-names`](https://github.com/jgierer12/react-tag-names)
-    — List of React’s HTML and SVG tag names
+    — list of React’s HTML and SVG tag names
 *   [`wooorm/svg-element-attributes`](https://github.com/wooorm/svg-element-attributes)
     — map of SVG elements to attributes
 *   [`wooorm/html-element-attributes`](https://github.com/wooorm/html-element-attributes)
