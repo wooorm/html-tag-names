@@ -118,6 +118,7 @@ export const htmlTagNames = [
   's',
   'samp',
   'script',
+  'search',
   'section',
   'select',
   'shadow',
