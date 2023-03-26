@@ -26,7 +26,7 @@ List of known HTML tag names.
 
 This is a list of HTML tag names.
 It includes ancient (for example, `nextid` and `basefont`) and modern (for
-example, `shadow` and `template`) names from the HTML living standard.
+example, `search` and `shadow`) names from the HTML living standard.
 The repo includes scripts to regenerate the data from the specs.
 
 ## When should I use this?
